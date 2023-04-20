@@ -1,14 +1,19 @@
-import { SignIn, SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
+import { useUser } from "@clerk/nextjs";
 import { type NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
+import { useEffect } from "react";
+import { SignInButtonStyled, SignOutButtonStyled, SignUpButtonStyled } from "~/components/buttons";
 
 import { api } from "~/utils/api";
 
 const Home: NextPage = () => {
-  const hello = api.example.hello.useQuery({ text: "from tRPC" });
+  const { data, isLoading, isSuccess, isError } = api.farms.getAll.useQuery();
 
   const user = useUser();
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
 
   return (
     <>
@@ -18,8 +23,18 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-white">
-        {!user.isSignedIn && <SignInButton />}
-        {!!user.isSignedIn && <SignOutButton />}
+        {!user.isSignedIn && (
+          <>
+            <SignInButtonStyled />
+            <SignUpButtonStyled />
+          </>
+        )}
+        {!!user.isSignedIn && <SignOutButtonStyled />}
+        {user.user?.fullName}
+
+        {data &&
+          isSuccess &&
+          data.map((farm) => <div key={farm.id}>{farm.name}</div>)}
       </main>
     </>
   );
