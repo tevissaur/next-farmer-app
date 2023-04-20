@@ -1,91 +1,20 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IFarm } from "../../../interfaces/IFarm";
-import { IProduct } from "../../../interfaces/IProduct";
-import { IModal, IReview } from "../../../interfaces/IReview";
-import { ILogin, ISignup, IUser } from "../../../interfaces/IUser";
 
-export interface UiState {
-	activePage: string;
-	returnUrl: string;
-	profileDropdown: boolean;
-	drawer: IModal;
-	login: ILogin;
-	signup: ISignup;
-	openTab: number;
-	review: IReview;
-	editUser: IUser;
-	editFarm: IFarm;
-	editProduct: IProduct;
-}
 
-const initialState: UiState = {
+const initialState = {
 	activePage: "",
 	returnUrl: '',
 	profileDropdown: false,
 	drawer: {
 		open: false
 	},
-	login: {
-		username: '',
-		password: '',
-		email: ''
-	},
-	signup: {
-		username: '',
-		password: '',
-		email: '',
-		firstName: ''
-	},
+	login: {},
+	signup: {},
 	openTab: 0,
-	review: {
-		author: {
-			username: "",
-			firstName: "",
-			lastName: "",
-			email: "",
-		},
-		content: "",
-		rating: 0,
-		farm: "",
-		product: "",
-	},
-	editUser: {
-		username: "",
-		firstName: "",
-		lastName: "",
-		email: "",
-		password: "",
-	},
-	editFarm: {
-		name: "",
-		address: "",
-		products: [],
-		owners: [],
-		story: "",
-		offersDelivery: false,
-		tags: [],
-		season: {
-			start: 0,
-			end: 0,
-		},
-	},
-	editProduct: {
-		name: "",
-		image: "",
-		price: 0,
-		description: "",
-		season: {
-			start: 0,
-			end: 0,
-		},
-		type: "",
-		tags: [],
-		categories: [],
-		quantity: {
-			amount: 0,
-			type: ''
-		}
-	}
+	review: {},
+	editUser: {},
+	editFarm: {},
+	editProduct: {}
 };
 
 export const uiSlice = createSlice({
@@ -104,13 +33,13 @@ export const uiSlice = createSlice({
 		setOpenTab: ((state, action: PayloadAction<number>) => {
 			state.openTab = action.payload;
 		}),
-		setLoginForm: ((state, action: PayloadAction<ILogin>) => {
+		setLoginForm: ((state, action: PayloadAction<object>) => {
 			state.login = action.payload;
 		}),
-		setSignupForm: ((state, action: PayloadAction<ISignup>) => {
+		setSignupForm: ((state, action: PayloadAction<object>) => {
 			state.signup = action.payload;
 		}),
-		setReviewForm: ((state, action: PayloadAction<IReview>) => {
+		setReviewForm: ((state, action: PayloadAction<object>) => {
 			state.review = action.payload
 		})
 	},

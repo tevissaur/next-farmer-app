@@ -5,13 +5,13 @@ export default {
   theme: {
     extend: {
       boxShadow:{
-        'outline': '3px 3px 0 0px black',
+        'outline': '2px 2px 0 0px black',
       },
       borderWidth: {
         '1': '1px',
       },
       translate:{
-        'reverse-1': '-0.25rem',
+        'reverse-0.5': '-0.15rem',
       }
     },
   },

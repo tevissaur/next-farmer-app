@@ -20,7 +20,7 @@ class UtilsService {
 		try {
 			console.log(products, newItemId)
 			if (products.length === 0) return false;
-			for (let item of products)
+			for (const item of products)
 				if (item.productId === newItemId) return true;
 
 			return false;

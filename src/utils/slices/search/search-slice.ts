@@ -1,20 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ICategory } from "../../../interfaces/ICategory";
-import { IFarm } from "../../../interfaces/IFarm";
-import { IProduct } from "../../../interfaces/IProduct";
-import {
-	isPendingAction,
-	RejectedAction,
-	FulfilledAction,
-} from "../cart/cart-slice";
 
-export interface SearchState {
-	farms: IFarm[];
-	products: IProduct[];
-	categories: ICategory[];
-}
-
-const initialState: SearchState = {
+const initialState = {
 	farms: [],
 	products: [],
 	categories: [],
@@ -24,39 +10,18 @@ export const searchSlice = createSlice({
 	name: "search",
 	initialState,
 	reducers: {
-		setFarms: (state, action: PayloadAction<IFarm[]>) => {
+		setFarms: (state, action: PayloadAction<[]>) => {
 			state.farms = action.payload;
 		},
-		setProducts: (state, action: PayloadAction<IProduct[]>) => {
+		setProducts: (state, action: PayloadAction<[]>) => {
 			state.products = action.payload;
 		},
-		setCategories: (state, action: PayloadAction<ICategory[]>) => {
+		setCategories: (state, action: PayloadAction<[]>) => {
 			state.categories = action.payload;
 		},
-		setSelectedCategories: (state, action: PayloadAction<ICategory[]>) => {
+		setSelectedCategories: (state, action: PayloadAction<[]>) => {
 			state.categories = action.payload;
 		},
-	},
-	extraReducers: (builder) => {
-		builder
-			.addCase(setFarms, () => initialState)
-			.addMatcher(isPendingAction, (state, action) => {
-				state[action.meta.requestId] = "pending";
-			})
-			.addMatcher(
-				(action): action is RejectedAction =>
-					action.type.endsWith("/rejected"),
-				(state, action) => {
-					state[action.meta.requestId] = "rejected";
-				}
-			)
-			.addMatcher(
-				(action): action is FulfilledAction =>
-					action.type.endsWith("/fulfilled"),
-				(state, action) => {
-					state[action.meta.requestId] = "fulfilled";
-				}
-			);
 	},
 });
 

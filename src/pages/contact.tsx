@@ -1,3 +1,4 @@
+
 import { useUser } from "@clerk/nextjs";
 import { type NextPage } from "next";
 
@@ -11,7 +12,7 @@ import { Layout } from "~/components/layout";
 
 import { api } from "~/utils/api";
 
-const News: NextPage = () => {
+const Contact: NextPage = () => {
   const { data, isLoading, isSuccess, isError } = api.farms.getAll.useQuery();
 
   const user = useUser();
@@ -29,4 +30,4 @@ const News: NextPage = () => {
   );
 };
 
-export default News;
+export default Contact;

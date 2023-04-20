@@ -11,7 +11,7 @@ import { Layout } from "~/components/layout";
 
 import { api } from "~/utils/api";
 
-const News: NextPage = () => {
+const Explore: NextPage = () => {
   const { data, isLoading, isSuccess, isError } = api.farms.getAll.useQuery();
 
   const user = useUser();
@@ -29,4 +29,4 @@ const News: NextPage = () => {
   );
 };
 
-export default News;
+export default Explore;
