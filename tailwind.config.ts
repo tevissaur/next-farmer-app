@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {
       boxShadow:{
-        'outline': '2px 2px 0 0px black',
+        'outline': '1px 1px 0 0px black',
       },
       borderWidth: {
         '1': '1px',

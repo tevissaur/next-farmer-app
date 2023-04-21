@@ -1,24 +1,40 @@
-interface InputProps {
+import { FC, PropsWithChildren } from "react";
+
+interface InputProps extends PropsWithChildren {
   label?: string;
   className?: string;
   type?: string;
   placeholder?: string;
 }
 
-export const DefaultStyleInput = ({
+export const DefaultStyleInput: FC<InputProps> = ({
   className,
   type,
   placeholder,
-}: InputProps) => {
+}) => {
   return (
     <input
       type={type}
-      className={`m-1 translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-full border-1 border-black bg-black/25 px-4 py-2 text-black shadow-outline transition-all duration-200 ${className || ""}`}
+      className={`input-primary ${className || ""}`}
       placeholder={placeholder}
     />
   );
 };
 
 export const SearchBar = () => {
-  return <DefaultStyleInput type="text" placeholder="Search for anything!" className="w-full focus-visible:outline-none font-bold" />;
+  return (
+    <DefaultStyleInput
+      type="search"
+      placeholder="Search for anything!"
+      className="w-full rounded-full font-bold focus-visible:outline-none"
+    />
+  );
+};
+
+export const TextArea = () => {
+  return (
+    <textarea className="input-primary font-bold focus-visible:outline-none">
+      Hello
+    </textarea>
+  );
 };

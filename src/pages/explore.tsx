@@ -7,6 +7,7 @@ import {
   SignOutButtonStyled,
   SignUpButtonStyled,
 } from "~/components/buttons";
+import { TextArea } from "~/components/inputs";
 import { Layout } from "~/components/layout";
 
 import { api } from "~/utils/api";
@@ -22,6 +23,8 @@ const Explore: NextPage = () => {
 
   return (
     <>
+      <TextArea />
+
       {data &&
         isSuccess &&
         data.map((farm) => <div key={farm.id}>{farm.name}</div>)}

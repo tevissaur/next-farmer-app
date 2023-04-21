@@ -5,46 +5,34 @@ import {
   useUser,
 } from "@clerk/nextjs";
 import Link from "next/dist/client/link";
+import { FC, PropsWithChildren, ReactElement } from "react";
 
-interface ButtonProps {
-  label?: string;
-  className?: string;
-}
 
-export const DefaultStyleButton = ({ label, className }: ButtonProps) => {
-  return (
-    <button
-      className={`m-1 translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-full border-1 border-black bg-black/25 px-4 py-1 font-bold text-black shadow-outline transition-all duration-200 hover:translate-x-0 hover:bg-black/60 hover:text-white hover:shadow-none ${className || ""}`}
-    >
-      {label}
-    </button>
-  );
-};
 export const SignInButtonStyled = () => {
   return (
     <SignInButton mode="modal">
-      <DefaultStyleButton label="Sign In" />
+      <button className="btn-primary">Sign In</button>
     </SignInButton>
   );
 };
 export const SignUpButtonStyled = () => {
   return (
     <SignUpButton mode="modal">
-      <DefaultStyleButton label="Sign Up" />
+      <button className="btn-secondary">Sign Up</button>
     </SignUpButton>
   );
 };
 export const SignOutButtonStyled = () => {
   return (
     <SignOutButton>
-      <DefaultStyleButton label="Sign Out" />
+      <button className="btn-primary">Sign Out</button>
     </SignOutButton>
   );
 };
 export const NavItem = ({ href, label }: { href: string; label: string }) => {
   return (
     <Link href={href}>
-      <DefaultStyleButton label={label} />
+      <button className="btn-primary">{label}</button>
     </Link>
   );
 };
