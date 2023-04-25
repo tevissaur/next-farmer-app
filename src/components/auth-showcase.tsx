@@ -1,4 +1,4 @@
-import { useUser } from "@clerk/nextjs";
+import { UserButton, useUser } from "@clerk/nextjs";
 import {
   SignInButtonStyled,
   SignOutButtonStyled,
@@ -9,14 +9,27 @@ export const AuthShowcase = () => {
   const user = useUser();
   return (
     <>
-      <div className="flex items-center justify-center py-2 text-center gap-4">
+      <div className="flex items-center justify-center gap-4 py-2 text-center">
         {!user.isSignedIn && (
           <>
             <SignInButtonStyled />
             <SignUpButtonStyled />
           </>
         )}
-        {!!user.isSignedIn && <SignOutButtonStyled />}
+        {!!user.isSignedIn && (
+          <>
+            <UserButton
+              userProfileMode="modal"
+              appearance={{
+                elements: {
+                  userButtonTrigger: "btn-profile",
+                },
+              }}
+            />
+
+            <SignOutButtonStyled />
+          </>
+        )}
         {user.user?.fullName}
       </div>
     </>

@@ -19,7 +19,6 @@ model User {
   email     String   @unique
   rating    Float
   createdAt DateTime @default(now())
-  Farm Farm?
 }
 
 model Category {
@@ -39,12 +38,9 @@ model Farm {
   longitude      Float
   offersDelivery Boolean
   seasonId       String
-  owner          User     @relation(fields: [ownerId], references: [id])
-  ownerId        String   @unique
   createdAt      DateTime @default(now())
 
   @@index([categoryId])
-  @@index([ownerId])
   @@index([seasonId])
 }
 
