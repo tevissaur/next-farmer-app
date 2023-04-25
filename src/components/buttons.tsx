@@ -1,10 +1,5 @@
-import {
-  SignInButton,
-  SignOutButton,
-  SignUpButton,
-} from "@clerk/nextjs";
+import { SignInButton, SignOutButton, SignUpButton } from "@clerk/nextjs";
 import Link from "next/dist/client/link";
-
 
 export const SignInButtonStyled = () => {
   return (
@@ -29,8 +24,8 @@ export const SignOutButtonStyled = () => {
 };
 export const NavItem = ({ href, label }: { href: string; label: string }) => {
   return (
-    <Link href={href}>
-      <button className="btn-primary">{label}</button>
+    <Link href={href} className="btn-primary">
+      {label}
     </Link>
   );
 };

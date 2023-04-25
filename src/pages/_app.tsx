@@ -1,17 +1,19 @@
 import { type AppType } from "next/app";
-
 import { api } from "~/utils/api";
-
 import "~/styles/globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Layout } from "~/components/layout";
+import { Provider } from "react-redux";
+import store from "~/utils/store";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <ClerkProvider {...pageProps}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <Provider store={store}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </Provider>
     </ClerkProvider>
   );
 };

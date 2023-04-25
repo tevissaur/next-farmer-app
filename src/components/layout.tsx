@@ -1,13 +1,21 @@
-import { ReactElement } from "react";
+import { FC, PropsWithChildren, ReactElement, useEffect } from "react";
 import { Footer } from "./footer";
 import { Header } from "./header";
 import Head from "next/head";
+import { setUserLocation } from "~/utils/slices/user/user-slice";
+import { useAppDispatch, useAppSelector } from "~/utils/hooks";
 
-export const Layout = ({
-  children,
-}: {
-  children: ReactElement | ReactElement[];
-}) => {
+export const Layout: FC<PropsWithChildren> = ({ children }) => {
+  const { location } = useAppSelector((state) => state.user.userData);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (navigator.geolocation)
+      navigator.geolocation.getCurrentPosition((location) => {
+        const { latitude, longitude } = location.coords;
+        dispatch(setUserLocation({ lat: latitude, lng: longitude }));
+      });
+  }, []);
   return (
     <>
       <Head>
@@ -16,7 +24,7 @@ export const Layout = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main className="flex min-h-screen flex-1 flex-col items-center justify-center">
+      <main className="flex min-h-screen flex-col justify-start gap-5">
         {children}
       </main>
       <Footer />
