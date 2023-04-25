@@ -4,12 +4,12 @@
 
 @layer components {
   .btn-primary {
-    @apply m-1 translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-full border-1 border-black px-4 py-2 font-bold text-black shadow-outline transition-all duration-200 hover:translate-x-0 hover:shadow-none;
+    @apply min-w-max translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-full border-1 border-black px-4 py-2 font-bold text-black shadow-outline transition-all duration-200 hover:translate-x-0 hover:shadow-none;
   }
   .btn-secondary {
-    @apply m-1 translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-full border-1 border-black px-4 py-2 font-bold text-black shadow-outline transition-all duration-200 hover:translate-x-0 hover:bg-white/60 hover:text-black hover:shadow-none;
+    @apply min-w-max translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-full border-1 border-black px-4 py-2 font-bold text-black shadow-outline transition-all duration-200 hover:translate-x-0 hover:bg-white/60 hover:text-black hover:shadow-none;
   }
   .input-primary {
-    @apply m-1 translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-xl border-1 border-black bg-black/25 px-4 py-2 text-black shadow-outline transition-all duration-200;
+    @apply translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-xl border-1 border-black bg-black/40 px-4 py-2 placeholder-black/50 text-black shadow-outline transition-all duration-200 focus:translate-x-0 focus:translate-y-0 focus:shadow-none hover:bg-black/10;
   }
 }

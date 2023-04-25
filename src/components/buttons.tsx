@@ -2,10 +2,8 @@ import {
   SignInButton,
   SignOutButton,
   SignUpButton,
-  useUser,
 } from "@clerk/nextjs";
 import Link from "next/dist/client/link";
-import { FC, PropsWithChildren, ReactElement } from "react";
 
 
 export const SignInButtonStyled = () => {
