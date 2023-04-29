@@ -1,33 +1,29 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface ILocation {
-	lat: number;
-	lng: number;
+  latitude: number;
+  longitude: number;
 }
 
 interface UserState {
-	userData: {
-		location: ILocation
-	};
+  location: ILocation;
 }
 
 const initialState = {
-	userData: {
-		location: {
-			lat: 0,
-			lng: 0,
-		}
-	},
+  location: {
+    latitude: 42,
+    longitude: -83,
+  },
 } as UserState;
 
 export const userSlice = createSlice({
-	name: "user",
-	initialState,
-	reducers: {
-		setUserLocation: (state, action: PayloadAction<ILocation>) => {
-			state.userData.location = action.payload;
-		}
-	},
+  name: "user",
+  initialState,
+  reducers: {
+    setUserLocation: (state, action: PayloadAction<ILocation>) => {
+      state.location = action.payload;
+    },
+  },
 });
 
 export const { setUserLocation } = userSlice.actions;

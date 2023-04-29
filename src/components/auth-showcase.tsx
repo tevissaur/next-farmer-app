@@ -30,7 +30,6 @@ export const AuthShowcase = () => {
             <SignOutButtonStyled />
           </>
         )}
-        {user.user?.fullName}
       </div>
     </>
   );

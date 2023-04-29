@@ -6,14 +6,13 @@ import { setUserLocation } from "~/utils/slices/user/user-slice";
 import { useAppDispatch, useAppSelector } from "~/utils/hooks";
 
 export const Layout: FC<PropsWithChildren> = ({ children }) => {
-  const { location } = useAppSelector((state) => state.user.userData);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (navigator.geolocation)
       navigator.geolocation.getCurrentPosition((location) => {
         const { latitude, longitude } = location.coords;
-        dispatch(setUserLocation({ lat: latitude, lng: longitude }));
+        dispatch(setUserLocation({ latitude, longitude }));
       });
   }, []);
   return (
@@ -24,7 +23,7 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main className="flex min-h-screen flex-col justify-start gap-5">
+      <main className="flex min-h-screen flex-col items-center justify-start gap-5">
         {children}
       </main>
       <Footer />

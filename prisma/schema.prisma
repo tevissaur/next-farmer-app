@@ -30,6 +30,7 @@ model Category {
 model Farm {
   id             String   @id @default(cuid())
   name           String
+  image          String
   description    String
   address        String
   categoryId     String
