@@ -17,7 +17,9 @@ export const TopFarms: FC<InputProps> = ({ placeholder }) => {
       {farms &&
         isSuccess &&
         farms.map((farm) => (
-          <div className="flex items-center justify-center">{farm.name}</div>
+          <div key={farm.id} className="flex items-center justify-center">
+            {farm.name}
+          </div>
         ))}
     </>
   );

@@ -26,4 +26,5 @@ export const farmsRouter = createTRPCRouter({
         },
       });
     }),
+    getPopularCategories: publicProcedure.query(({ ctx }) => ctx.prisma.category.findMany()),
 });

@@ -19,7 +19,7 @@ export const CarouselItem: FC<CarouselItemProps> = ({
     <div className="flex flex-col items-center gap-3 hover:z-50">
       <a
         href={href || ""}
-        className="h-[80px] w-[80px] max-w-fit overflow-hidden rounded-full shadow-lg transition-all duration-200 ease-in-out hover:scale-110 hover:shadow-xl md:h-[120px] md:w-[120px]"
+        className="h-[120px] w-[120px] max-w-fit overflow-hidden rounded-full shadow-lg transition-all duration-200 ease-in-out hover:scale-110 hover:shadow-xl"
       >
         <Image
           width={120}
@@ -33,6 +33,37 @@ export const CarouselItem: FC<CarouselItemProps> = ({
   );
 };
 
+export const Categories: FC = () => {
+
+  const {
+    data: categories,
+    isSuccess,
+    isError,
+    isLoading,
+  } = api.farms.getPopularCategories.useQuery();
+  return (
+    <>
+      <div className="md:max-w-1/2 flex h-full w-full flex-col gap-5 rounded-lg p-3 md:w-2/3">
+        <h3 className="content-start text-start text-[2rem]">
+          Popular Categories
+        </h3>
+        <div className="flex h-full w-full items-start justify-start gap-4 overflow-y-auto overflow-x-visible rounded-lg p-3 lg:justify-center">
+          {categories &&
+            isSuccess &&
+            categories.map((category) => (
+              <CarouselItem
+                href={`/category/${category.id}`}
+                imageUrl={"https://plus.unsplash.com/premium_photo-1666777246850-e18916172de7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"}
+                key={category.id}
+              >
+                {category.name}
+              </CarouselItem>
+            ))}
+        </div>
+      </div>
+    </>
+  );
+};
 export const TopFarms: FC = () => {
   const {
     location: { latitude, longitude },
@@ -50,7 +81,7 @@ export const TopFarms: FC = () => {
         <h3 className="content-start text-start text-[2rem]">
           Farms Near You!
         </h3>
-        <div className="flex w-full items-center justify-start gap-4 overflow-visible overflow-y-auto rounded-lg  md:justify-center">
+        <div className="flex h-full w-full items-start justify-start gap-4 overflow-y-auto overflow-x-visible rounded-lg p-3 lg:justify-center">
           {farms &&
             isSuccess &&
             farms.map((farm) => (

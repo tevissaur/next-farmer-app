@@ -1,4 +1,5 @@
 import { FC, PropsWithChildren } from "react";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 interface InputProps extends PropsWithChildren {
   placeholder?: string;
@@ -16,7 +17,7 @@ export const SearchBar: FC<InputProps> = ({ placeholder }) => {
 
 export const TextArea: FC<InputProps> = ({ placeholder }) => {
   return (
-    <textarea className="input-primary font-bold focus-visible:outline-none" placeholder={placeholder}>
+    <textarea className="input-primary font-bold focus-visible:outline-none w-full" placeholder={placeholder}>
       
     </textarea>
   );

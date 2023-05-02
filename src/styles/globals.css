@@ -4,15 +4,32 @@
 
 @layer components {
   .btn-primary {
-    @apply min-w-max translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-full border-1 border-black px-4 py-2 font-bold text-black shadow-outline transition-all duration-200 hover:translate-x-0 hover:shadow-none;
+    @apply min-w-max translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-full border-black bg-french-gray hover:bg-cool-gray border-1 px-4 py-2 font-bold text-black  shadow-outline transition-all duration-100 hover:translate-x-0 hover:shadow-none text-[1.1rem] md:text-[1rem];
+  }
+  .btn-signup {
+    @apply min-w-max translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-full border-1 px-4 py-2 font-bold text-black shadow-outline transition-all duration-100 hover:translate-x-0  hover:shadow-none bg-highlight-red hover:bg-transparent hover:border-2 hover:border-highlight-red border-black hover:text-highlight-red;
   }
   .btn-secondary {
-    @apply min-w-max translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-full border-1 border-black px-4 py-2 font-bold text-black shadow-outline transition-all duration-200 hover:translate-x-0 hover:bg-white/60 hover:text-black hover:shadow-none;
+    @apply min-w-max translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-full border-1  px-4 py-2 font-bold text-black shadow-outline transition-all duration-100 hover:translate-x-0  hover:shadow-none bg-olivine hover:bg-viridian border-black hover:text-white ;
   }
   .btn-profile {
-    @apply min-w-max translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-full border-1 border-black font-bold text-black shadow-outline-profile transition-all duration-200 hover:translate-x-0 hover:bg-white/60 hover:text-black hover:shadow-none;
+    @apply min-w-max translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-full border-black border-1 font-bold shadow-outline-profile text-black transition-all duration-100 hover:translate-x-0 hover:bg-white/60 hover:shadow-none;
   }
   .input-primary {
-    @apply translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-xl border-1 border-black bg-black/40 px-4 py-2 text-black placeholder-black/50 shadow-outline transition-all duration-200 hover:bg-black/10 focus:translate-x-0 focus:translate-y-0 focus:bg-black/10 focus:shadow-none;
+    @apply translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-xl border-black border-1 text-black bg-black/20 px-4 py-2 placeholder-black/50 shadow-outline transition-all duration-100 hover:bg-black/10 focus:translate-x-0 focus:translate-y-0 focus:bg-black/10 focus:shadow-none;
+  }
+  ::-webkit-scrollbar {
+    @apply rounded-xl bg-olivine hidden md:visible;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply rounded-xl bg-olivine;
+  }
+  ::-webkit-scrollbar-track-piece {
+    @apply rounded-xl bg-olivine;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-xl bg-viridian;
   }
 }
+
