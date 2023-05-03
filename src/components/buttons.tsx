@@ -1,4 +1,10 @@
-import { SignInButton, SignOutButton, SignUpButton } from "@clerk/nextjs";
+import {
+  SignInButton,
+  SignOutButton,
+  SignUpButton,
+  useUser,
+} from "@clerk/nextjs";
+import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import Link from "next/dist/client/link";
 import { useAppDispatch, useAppSelector } from "~/utils/hooks";
 import { toggleDrawer } from "~/utils/slices/ui/ui-slice";
@@ -34,5 +40,18 @@ export const NavItem = ({ href, label }: { href: string; label: string }) => {
     >
       {label}
     </Link>
+  );
+};
+export const CartButton = () => {
+  const { isSignedIn } = useUser();
+  return (
+    <>
+      {isSignedIn && (
+        <Link href="/cart" className="flex justify-center gap-3">
+          <ShoppingCartIcon className="h-6 w-6" />
+          <span>0</span>
+        </Link>
+      )}
+    </>
   );
 };

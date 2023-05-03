@@ -7,7 +7,7 @@
     @apply min-w-max translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-full border-black bg-french-gray hover:bg-cool-gray border-1 px-4 py-2 font-bold text-black  shadow-outline transition-all duration-100 hover:translate-x-0 hover:shadow-none text-[1.1rem] md:text-[1rem];
   }
   .btn-signup {
-    @apply min-w-max translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-full border-1 px-4 py-2 font-bold text-black shadow-outline transition-all duration-100 hover:translate-x-0  hover:shadow-none bg-highlight-red hover:bg-transparent hover:border-2 hover:border-highlight-red border-black hover:text-highlight-red;
+    @apply min-w-max translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-full border-1 px-4 py-2 font-bold text-black shadow-outline transition-all duration-100 hover:translate-x-0  hover:shadow-none bg-highlight-red hover:bg-transparent hover:border-1 hover:border-highlight-red border-black hover:text-highlight-red;
   }
   .btn-secondary {
     @apply min-w-max translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-full border-1  px-4 py-2 font-bold text-black shadow-outline transition-all duration-100 hover:translate-x-0  hover:shadow-none bg-olivine hover:bg-viridian border-black hover:text-white ;
@@ -19,11 +19,13 @@
     @apply translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-xl border-black border-1 text-black bg-black/20 px-4 py-2 placeholder-black/50 shadow-outline transition-all duration-100 hover:bg-black/10 focus:translate-x-0 focus:translate-y-0 focus:bg-black/10 focus:shadow-none;
   }
   ::-webkit-scrollbar {
-    @apply rounded-xl bg-olivine hidden md:visible;
+    @apply rounded-xl bg-olivine hidden lg:visible max-w-[0.5rem] max-h-[0.5rem];
   }
-
+  ::-webkit-scrollbar-button {
+    @apply rounded-xl bg-viridian text-french-gray;
+  }
   ::-webkit-scrollbar-track {
-    @apply rounded-xl bg-olivine;
+    @apply rounded-xl bg-olivine shadow-inner;
   }
   ::-webkit-scrollbar-track-piece {
     @apply rounded-xl bg-olivine;

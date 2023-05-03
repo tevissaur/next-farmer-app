@@ -6,6 +6,7 @@ const initialState = {
   profileDropdown: false,
   drawer: {
     open: false,
+    body: null
   },
   login: {},
   signup: {},
