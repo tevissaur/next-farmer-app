@@ -3,14 +3,129 @@
 generator client {
   provider = "prisma-client-js"
 }
+
 datasource db {
-  provider = "mysql"
-  url = env("DATABASE_URL")
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
 
-model Example {
-    id        String   @id @default(cuid())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+model User {
+  id        String    @id @default(cuid())
+  firstName String?
+  lastName  String?
+  fullName  String
+  username  String    @unique
+  email     String    @unique
+  rating    Float
+  createdAt DateTime  @default(now())
+  Article   Article[]
+}
+
+model Category {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  createdAt DateTime @default(now())
+}
+
+model Filter {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  createdAt DateTime @default(now())
+}
+
+model Farm {
+  id             String   @id @default(cuid())
+  name           String
+  image          String
+  description    String
+  address        String
+  categoryId     String
+  rating         Float
+  latitude       Float
+  longitude      Float
+  offersDelivery Boolean
+  seasonId       String
+  createdAt      DateTime @default(now())
+
+  @@index([categoryId])
+  @@index([seasonId])
+}
+
+model Season {
+  id        String   @id @default(cuid())
+  startDate DateTime
+  endDate   DateTime
+  createdAt DateTime @default(now())
+}
+
+model Cart {
+  id        String        @id @default(cuid())
+  total     Float
+  products  CartProduct[]
+  createdAt DateTime      @default(now())
+}
+
+model CartProduct {
+  id        String   @id @default(cuid())
+  cart      Cart     @relation(fields: [cartId], references: [id])
+  cartId    String
+  productId String
+  farmId    String
+  quantity  Int
+  price     Float
+  createdAt DateTime @default(now())
+
+  @@index([cartId])
+}
+
+model Product {
+  id            String   @id @default(cuid())
+  farmId        String
+  name          String
+  description   String
+  price         Float
+  unitOfMeasure String
+  categoryId    String
+  rating        Float
+  createdAt     DateTime @default(now())
+}
+
+model Order {
+  id        String   @id @default(cuid())
+  farmId    String
+  userId    String
+  createdAt DateTime @default(now())
+}
+
+model OrderProduct {
+  id        String   @id @default(cuid())
+  productId String
+  farmId    String
+  quantity  Int
+  createdAt DateTime @default(now())
+}
+
+model Article {
+  id            String   @id @default(cuid())
+  title         String
+  content       String   @db.VarChar(1000)
+  articleTypeId String
+  authorId      String
+  farmId        String
+  productId     String
+  likes         Int
+  createdAt     DateTime @default(now())
+  author        User     @relation(fields: [authorId], references: [id])
+
+  @@index([articleTypeId])
+  @@index([authorId])
+  @@index([farmId])
+  @@index([productId])
+}
+
+model ArticleType {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  createdAt DateTime @default(now())
 }
