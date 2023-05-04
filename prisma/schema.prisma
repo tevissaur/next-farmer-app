@@ -11,21 +11,35 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(cuid())
-  firstName String?
-  lastName  String?
-  fullName  String
-  username  String    @unique
-  email     String    @unique
-  rating    Float
-  createdAt DateTime  @default(now())
-  Article   Article[]
+  id              String       @id @default(cuid())
+  firstName       String?
+  lastName        String?
+  fullName        String?
+  username        String?      @unique
+  email           String?      @unique
+  rating          Float?
+  createdAt       DateTime     @default(now())
+  articles        Article[]
+  farms           Farm[]       @relation("FarmOwner")
+  farmMemberships FarmMember[]
 }
 
 model Category {
-  id        String   @id @default(cuid())
-  name      String   @unique
-  createdAt DateTime @default(now())
+  id          String        @id @default(cuid())
+  name        String
+  slug        String
+  createdAt   DateTime      @default(now())
+  SubCategory SubCategory[]
+}
+
+model SubCategory {
+  id         String   @id @default(cuid())
+  name       String   @unique
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id])
+  createdAt  DateTime @default(now())
+
+  @@index([categoryId])
 }
 
 model Filter {
@@ -34,22 +48,49 @@ model Filter {
   createdAt DateTime @default(now())
 }
 
+model FarmMember {
+  id        String   @id @default(cuid())
+  farmId    String
+  userId    String
+  Farm      Farm     @relation(fields: [farmId], references: [id])
+  Member    User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+
+  @@index([farmId])
+  @@index([userId])
+}
+
 model Farm {
-  id             String   @id @default(cuid())
+  id             String         @id @default(cuid())
   name           String
+  slug           String
   image          String
   description    String
   address        String
-  categoryId     String
   rating         Float
   latitude       Float
   longitude      Float
   offersDelivery Boolean
   seasonId       String
-  createdAt      DateTime @default(now())
+  createdAt      DateTime       @default(now())
+  ownerId        String
+  owner          User           @relation("FarmOwner", fields: [ownerId], references: [id])
+  members        FarmMember[]
+  FarmCategory   FarmCategory[]
 
-  @@index([categoryId])
+  @@index([ownerId])
   @@index([seasonId])
+}
+
+model FarmCategory {
+  id         String   @id @default(cuid())
+  farmId     String
+  categoryId String
+  farm       Farm     @relation(fields: [farmId], references: [id])
+  createdAt  DateTime @default(now())
+
+  @@index([farmId])
+  @@index([categoryId])
 }
 
 model Season {
@@ -107,25 +148,18 @@ model OrderProduct {
 }
 
 model Article {
-  id            String   @id @default(cuid())
-  title         String
-  content       String   @db.VarChar(1000)
-  articleTypeId String
-  authorId      String
-  farmId        String
-  productId     String
-  likes         Int
-  createdAt     DateTime @default(now())
-  author        User     @relation(fields: [authorId], references: [id])
+  id          String   @id @default(cuid())
+  title       String
+  content     String   @db.VarChar(1000)
+  articleType String
+  authorId    String
+  farmId      String?
+  productId   String?
+  likes       Int?
+  createdAt   DateTime @default(now())
+  author      User?    @relation(fields: [authorId], references: [id])
 
-  @@index([articleTypeId])
   @@index([authorId])
   @@index([farmId])
   @@index([productId])
-}
-
-model ArticleType {
-  id        String   @id @default(cuid())
-  name      String   @unique
-  createdAt DateTime @default(now())
 }

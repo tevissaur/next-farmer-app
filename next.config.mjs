@@ -19,7 +19,7 @@ const config = {
     defaultLocale: "en",
   },
   images: {
-    domains: ["plus.unsplash.com"],
+    domains: ["plus.unsplash.com", "via.placeholder.com"],
   },
 };
 export default config;

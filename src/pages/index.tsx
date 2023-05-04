@@ -4,7 +4,11 @@ import { type NextPage } from "next";
 import { useEffect } from "react";
 import Banner from "~/components/banner";
 import { Card } from "~/components/cards";
-import { Categories, PopularBlogs, TopFarms } from "~/components/carousels";
+import {
+  PopularCategories,
+  PopularBlogs,
+  TopFarms,
+} from "~/components/carousels";
 
 import { api } from "~/utils/api";
 
@@ -13,7 +17,7 @@ const Home: NextPage = () => {
     <>
       <Banner>Home</Banner>
       <TopFarms />
-      <Categories />
+      <PopularCategories />
       <PopularBlogs />
     </>
   );

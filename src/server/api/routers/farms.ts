@@ -13,6 +13,7 @@ export const farmsRouter = createTRPCRouter({
           name: true,
           image: true,
         },
+        take: 6,
         where: {
           latitude: {
             gte: latitude - 10,
@@ -25,5 +26,12 @@ export const farmsRouter = createTRPCRouter({
         },
       });
     }),
-    getPopularCategories: publicProcedure.query(({ ctx }) => ctx.prisma.category.findMany()),
+  getPopularCategories: publicProcedure.query(({ ctx }) =>
+    ctx.prisma.category.findMany()
+  ),
+  getFarmById: publicProcedure
+    .input(z.object({ id: z.string() }))
+    .query(({ ctx, input: { id } }) =>
+      ctx.prisma.farm.findUnique({ where: { id } })
+    ),
 });

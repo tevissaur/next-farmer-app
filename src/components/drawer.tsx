@@ -41,7 +41,7 @@ export const Drawer: FC<PropsWithChildren> = ({ children }) => {
             leaveFrom="translate-x-0"
             leaveTo="translate-x-full"
           >
-            {body}
+            {children}
           </Transition.Child>
         </div>
       </Dialog>
