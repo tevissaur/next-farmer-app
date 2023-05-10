@@ -18,9 +18,10 @@ model User {
   username        String?      @unique
   email           String?      @unique
   rating          Float?
+  image           String?
   createdAt       DateTime     @default(now())
   articles        Article[]
-  farms           Farm[]       @relation("FarmOwner")
+  farms           Farm[]
   farmMemberships FarmMember[]
 }
 
@@ -74,7 +75,7 @@ model Farm {
   seasonId       String
   createdAt      DateTime       @default(now())
   ownerId        String
-  owner          User           @relation("FarmOwner", fields: [ownerId], references: [id])
+  owner          User?          @relation(fields: [ownerId], references: [id])
   members        FarmMember[]
   FarmCategory   FarmCategory[]
 

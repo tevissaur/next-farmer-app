@@ -1,4 +1,4 @@
-import { Farm } from "@prisma/client";
+import { Article, Farm } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 import { FC, PropsWithChildren, useEffect } from "react";
@@ -30,13 +30,14 @@ export const CarouselItem: FC<CarouselItemProps> = ({
     <div className="flex flex-col items-center gap-3 hover:z-50">
       <Link
         href={href || ""}
-        className="h-[120px] w-[120px] max-w-fit overflow-hidden rounded-full shadow-lg transition-all duration-200 ease-in-out hover:scale-110 hover:shadow-xl"
+        className="h-[250px] w-[250px] max-w-[250px] overflow-hidden rounded-full shadow-lg transition-all duration-200 ease-in-out hover:scale-110 hover:shadow-xl"
       >
         <Image
-          width={120}
-          height={120}
+          width={250}
+          height={250}
           src={imageUrl || ""}
           alt="Placeholder Image"
+          className=" object-fill"
         />
       </Link>
       <h3 className="text-md text-center font-semibold">{children}</h3>
@@ -44,7 +45,10 @@ export const CarouselItem: FC<CarouselItemProps> = ({
   );
 };
 
-export const PopularCategories: FC = () => {
+interface PopularCategoriesProps extends PropsWithChildren {
+  posts?: Article[];
+}
+export const PopularCategories: FC<PopularCategoriesProps> = ({ posts }) => {
   const {
     data: categories,
     isSuccess,
@@ -57,7 +61,7 @@ export const PopularCategories: FC = () => {
         <h3 className="content-start text-start text-[2rem]">
           Popular Categories
         </h3>
-        <div className="flex h-full w-full items-start justify-start gap-4 overflow-y-auto overflow-x-visible rounded-lg p-3 lg:justify-center">
+        <div className="flex h-full w-full items-start justify-start gap-4 overflow-y-auto overflow-x-visible rounded-lg p-3">
           {categories &&
             isSuccess &&
             categories.map((category) => (
@@ -79,6 +83,7 @@ export const PopularCategories: FC = () => {
     </>
   );
 };
+
 export const TopFarms: FC = () => {
   const {
     location: { latitude, longitude },
@@ -96,14 +101,14 @@ export const TopFarms: FC = () => {
         <h3 className="content-start text-start text-[2rem]">
           Farms Near You!
         </h3>
-        <div className="flex h-full w-full items-start justify-start gap-4 overflow-y-auto overflow-x-visible rounded-lg p-3 lg:justify-center">
+        <div className="flex h-full w-full items-start justify-start gap-4 overflow-y-auto overflow-x-visible rounded-lg p-3">
           {farms &&
             isSuccess &&
             farms.map((farm) => (
               <CarouselItem
                 href={{
-                  pathname: "/storefront/[id]",
-                  query: { id: farm.id },
+                  pathname: "/storefront/[slug]",
+                  query: { slug: farm.slug },
                 }}
                 imageUrl={farm.image}
                 key={farm.id}
@@ -162,7 +167,7 @@ export const PopularBlogs: FC = () => {
                   </svg>
                   <div className="flex gap-x-2.5">
                     <img
-                      src={""}
+                      src={post.author?.image || ""}
                       alt=""
                       className="h-6 w-6 flex-none rounded-full bg-white/10"
                     />

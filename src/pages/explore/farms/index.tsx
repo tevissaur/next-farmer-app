@@ -7,9 +7,9 @@ import {
   PlusIcon,
   Squares2X2Icon,
 } from "@heroicons/react/20/solid";
+import { OrganizationSwitcher, useOrganization } from "@clerk/nextjs";
 import { type NextPage } from "next";
-import { api } from "~/utils/api";
-import { useAppSelector, useAppDispatch } from "~/utils/hooks";
+import { useAppDispatch } from "~/utils/hooks";
 import { toggleDrawer } from "~/utils/slices/ui/ui-slice";
 import { useRouter } from "next/router";
 
@@ -18,14 +18,8 @@ const classNames = (...classes: string[]) => {
 };
 const Explore: NextPage = () => {
   const router = useRouter();
-  const { slug } = router.query;
   const dispatch = useAppDispatch();
-  const {
-    data: category,
-    isError,
-    isSuccess,
-    isLoading,
-  } = api.categories.getCategoryBySlug.useQuery(slug as string);
+  const org = useOrganization();
 
   const sortOptions = [
     { name: "Most Popular", href: "#", current: true },
@@ -85,8 +79,9 @@ const Explore: NextPage = () => {
         <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900">
-              {category && category.name}
+              {org.organization?.name}
             </h1>
+            <OrganizationSwitcher />
 
             <div className="flex items-center">
               <Menu as="div" className="relative inline-block text-left">
@@ -156,7 +151,6 @@ const Explore: NextPage = () => {
             <h2 id="products-heading" className="sr-only">
               Products
             </h2>
-
             <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
               {/* Filters */}
               <form className="hidden lg:block">
