@@ -45,7 +45,8 @@ model SubCategory {
 
 model Filter {
   id        String   @id @default(cuid())
-  name      String   @unique
+  label     String   @unique
+  value     String
   createdAt DateTime @default(now())
 }
 
@@ -53,8 +54,8 @@ model FarmMember {
   id        String   @id @default(cuid())
   farmId    String
   userId    String
-  Farm      Farm     @relation(fields: [farmId], references: [id])
-  Member    User     @relation(fields: [userId], references: [id])
+  Farm      Farm?    @relation(fields: [farmId], references: [id])
+  Member    User?    @relation(fields: [userId], references: [id])
   createdAt DateTime @default(now())
 
   @@index([farmId])
@@ -75,6 +76,7 @@ model Farm {
   seasonId       String
   createdAt      DateTime       @default(now())
   ownerId        String
+  products       Product[]
   owner          User?          @relation(fields: [ownerId], references: [id])
   members        FarmMember[]
   FarmCategory   FarmCategory[]
@@ -131,6 +133,9 @@ model Product {
   categoryId    String
   rating        Float
   createdAt     DateTime @default(now())
+  Farm          Farm?    @relation(fields: [farmId], references: [id])
+
+  @@index([farmId])
 }
 
 model Order {

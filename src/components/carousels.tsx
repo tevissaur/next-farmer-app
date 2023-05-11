@@ -101,7 +101,7 @@ export const TopFarms: FC = () => {
         <h3 className="content-start text-start text-[2rem]">
           Farms Near You!
         </h3>
-        <div className="flex h-full w-full items-start justify-start gap-4 overflow-y-auto overflow-x-visible rounded-lg p-3">
+        <div className="flex h-full w-full items-start justify-start gap-4 overflow-y-scroll rounded-lg p-3">
           {farms &&
             isSuccess &&
             farms.map((farm) => (

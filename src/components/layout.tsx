@@ -4,7 +4,6 @@ import { Header } from "./header";
 import Head from "next/head";
 import { setUserLocation } from "~/utils/slices/user/user-slice";
 import { useAppDispatch, useAppSelector } from "~/utils/hooks";
-import { Drawer } from "./drawer";
 
 export const Layout: FC<PropsWithChildren> = ({ children }) => {
   const dispatch = useAppDispatch();

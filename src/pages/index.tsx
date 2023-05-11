@@ -3,7 +3,7 @@ import { type NextPage } from "next";
 
 import { useEffect } from "react";
 import Banner from "~/components/banner";
-import { Card } from "~/components/cards";
+import { Card, SignUpCard } from "~/components/cards";
 import {
   PopularCategories,
   PopularBlogs,
@@ -19,6 +19,7 @@ const Home: NextPage = () => {
       <TopFarms />
       <PopularCategories />
       <PopularBlogs />
+      <SignUpCard />
     </>
   );
 };

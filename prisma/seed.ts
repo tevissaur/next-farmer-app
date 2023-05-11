@@ -3,7 +3,8 @@ import { prisma } from "../src/server/db";
 
 async function main() {
   await prisma.article.deleteMany();
-  // Seed the database based on the schema in schema.prisma
+  await prisma.farmMember.deleteMany();
+  // Seed the database based on the schema in schema.prisma with descriptive data
   await prisma.category.deleteMany();
   await prisma.category.createMany({
     data: [
@@ -52,7 +53,7 @@ async function main() {
       },
       {
         name: "Bucky's Farm",
-        slug: slugify("Lucky's Farm", { lower: true }),
+        slug: slugify("Bucky's Farm", { lower: true }),
         image: "https://source.unsplash.com/featured/?farm",
         latitude: 43.6532,
         longitude: -79.3832,
@@ -65,7 +66,7 @@ async function main() {
       },
       {
         name: "Ducky's Farm",
-        slug: slugify("Lucky's Farm", { lower: true }),
+        slug: slugify("Ducky's Farm", { lower: true }),
         image: "https://source.unsplash.com/featured/?farm",
         latitude: 43.6532,
         longitude: -79.3832,
@@ -75,6 +76,24 @@ async function main() {
         offersDelivery: true,
         seasonId: "1",
         ownerId: "user_2Ovr5B1HU9DVI7YXKqc9IByZnBP",
+      },
+    ],
+  });
+
+  await prisma.filter.deleteMany();
+  await prisma.filter.createMany({
+    data: [
+      {
+        label: "Organic",
+        value: slugify("Organic", { lower: true }),
+      },
+      {
+        label: "Non-GMO",
+        value: slugify("Non-GMO", { lower: true }),
+      },
+      {
+        label: "Gluten-Free",
+        value: slugify("Gluten-Free", { lower: true }),
       },
     ],
   });

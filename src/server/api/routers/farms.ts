@@ -1,3 +1,4 @@
+import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
@@ -36,11 +37,15 @@ export const farmsRouter = createTRPCRouter({
     .query(({ ctx, input: { id } }) =>
       ctx.prisma.farm.findUnique({ where: { id } })
     ),
-  getFarmBySlug: publicProcedure
-    .input(z.string())
-    .query(({ ctx, input }) =>
-      ctx.prisma.farm.findFirst({ where: { slug: input } })
-    ),
+  getFarmBySlug: publicProcedure.input(z.string()).query(({ ctx, input }) =>
+    ctx.prisma.farm.findFirst({
+      where: { slug: input },
+      include: {
+        members: true,
+        products: true,
+      },
+    })
+  ),
   getFarmsByOwnerId: publicProcedure
     .input(z.string())
     .query(({ ctx, input }) => {
@@ -68,13 +73,39 @@ export const farmsRouter = createTRPCRouter({
     )
     .mutation(async ({ ctx, input }) => {
       const farms = await ctx.prisma.farm.findMany({
+        select: {
+          _count: true,
+        },
         where: {
           ownerId: input[0]?.ownerId,
         },
       });
-      if (farms.length > 0)
+      if (farms.length > 3)
         return { error: "You already have the maximum amount of farms" };
       return ctx.prisma.farm.createMany({
+        data: input,
+      });
+    }),
+  addMemberToFarm: publicProcedure
+    .input(
+      z.object({
+        farmId: z.string(),
+        userId: z.string(),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const existingMembership = await ctx.prisma.farmMember.findFirst({
+        where: {
+          farmId: input.farmId,
+          userId: input.userId,
+        },
+      });
+      if (existingMembership)
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "User is already a member of this farm",
+        });
+      return await ctx.prisma.farmMember.create({
         data: input,
       });
     }),

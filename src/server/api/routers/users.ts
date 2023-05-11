@@ -18,6 +18,7 @@ export const usersRouter = createTRPCRouter({
       })
     )
     .mutation(({ ctx, input }) => {
+      console.log("input", input);
       return ctx.prisma.user.upsert({
         where: {
           id: input.id || "",
