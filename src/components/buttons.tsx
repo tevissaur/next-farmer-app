@@ -6,6 +6,7 @@ import {
 } from "@clerk/nextjs";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import Link from "next/dist/client/link";
+import { MouseEventHandler } from "react";
 import { useAppDispatch, useAppSelector } from "~/utils/hooks";
 import { toggleDrawer } from "~/utils/slices/ui/ui-slice";
 
@@ -30,14 +31,18 @@ export const SignOutButtonStyled = () => {
     </SignOutButton>
   );
 };
-export const NavItem = ({ href, label }: { href: string; label: string }) => {
+export const NavItem = ({
+  href,
+  label,
+  onClick,
+}: {
+  href: string;
+  label: string;
+  onClick: MouseEventHandler;
+}) => {
   const dispatch = useAppDispatch();
   return (
-    <Link
-      href={href}
-      className="btn-primary"
-      onClick={() => dispatch(toggleDrawer(false))}
-    >
+    <Link href={href} className="btn-primary" onClick={onClick}>
       {label}
     </Link>
   );

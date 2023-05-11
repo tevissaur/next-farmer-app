@@ -4,34 +4,44 @@
 
 @layer components {
   .btn-primary {
-    @apply min-w-max translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-full border-black bg-french-gray hover:bg-cool-gray border-1 px-4 py-2 font-bold text-black  shadow-outline transition-all duration-100 hover:translate-x-0 hover:shadow-none text-[1.1rem] md:text-[1rem];
+    @apply min-w-max translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-full border-1 border-black bg-french-gray px-4 py-2 text-[1.1rem] font-bold text-black  shadow-outline transition-all duration-100 hover:translate-x-0 hover:bg-cool-gray hover:shadow-none md:text-[1rem];
+  }
+  .farm-card {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 24px 48px;
+    width: calc(100vw - 5rem);
+    @apply my-12 flex w-11/12 flex-col items-center justify-center rounded-lg border-1 px-8 pt-10 lg:w-8/12;
+  }
+  .farm-card-header {
+    @apply w-full;
+  }
+  .farm-card-body {
+    @apply mt-6 w-full  border-t border-gray-100;
   }
   .btn-signup {
-    @apply min-w-max translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-full border-1 px-4 py-2 font-bold text-black shadow-outline transition-all duration-100 hover:translate-x-0  hover:shadow-none bg-highlight-red hover:bg-transparent hover:border-1 hover:border-highlight-red border-black hover:text-highlight-red;
+    @apply min-w-max translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-full border-1 border-black bg-highlight-red px-4 py-2 font-bold text-black shadow-outline transition-all  duration-100 hover:translate-x-0 hover:border-1 hover:border-highlight-red hover:bg-white/70 hover:text-highlight-red hover:shadow-none;
   }
   .btn-secondary {
-    @apply min-w-max translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-full border-1  px-4 py-2 font-bold text-black shadow-outline transition-all duration-100 hover:translate-x-0  hover:shadow-none bg-olivine hover:bg-viridian border-black hover:text-white ;
+    @apply min-w-max translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-full border-1  border-black bg-olivine px-4 py-2 font-bold text-black shadow-outline transition-all  duration-100 hover:translate-x-0 hover:bg-viridian hover:text-white hover:shadow-none;
   }
   .btn-profile {
-    @apply min-w-max translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-full border-black border-1 font-bold shadow-outline-profile text-black transition-all duration-100 hover:translate-x-0 hover:bg-white/60 hover:shadow-none;
+    @apply min-w-max translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-full border-1 border-black font-bold text-black shadow-outline-profile transition-all duration-100 hover:translate-x-0 hover:bg-white/60 hover:shadow-none;
   }
   .input-primary {
-    @apply translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-xl border-black border-1 text-black bg-black/20 px-4 py-2 placeholder-black/50 shadow-outline transition-all duration-100 hover:bg-black/10 focus:translate-x-0 focus:translate-y-0 focus:bg-black/10 focus:shadow-none;
+    @apply translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-xl border-1 border-black bg-french-gray px-4 py-2 text-black placeholder-black/50 shadow-outline transition-all duration-100 hover:bg-cool-gray focus:translate-x-0 focus:translate-y-0 focus:bg-french-gray focus:shadow-none;
   }
   ::-webkit-scrollbar {
-    @apply rounded-xl bg-olivine hidden lg:visible max-w-[0.5rem] max-h-[0.5rem];
+    @apply hidden max-h-[0.6rem] max-w-[0.6rem] rounded-xl bg-french-gray;
   }
   ::-webkit-scrollbar-button {
-    @apply rounded-xl bg-viridian text-french-gray;
+    @apply rounded-xl bg-viridian;
   }
   ::-webkit-scrollbar-track {
-    @apply rounded-xl bg-olivine shadow-inner;
+    @apply rounded-xl bg-french-gray shadow-inner;
   }
   ::-webkit-scrollbar-track-piece {
-    @apply rounded-xl bg-olivine;
+    @apply rounded-xl bg-french-gray;
   }
   ::-webkit-scrollbar-thumb {
     @apply rounded-xl bg-viridian;
   }
 }
-

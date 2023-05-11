@@ -1,4 +1,22 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { ReactNode } from "react";
+
+interface UiState {
+  activePage: string;
+  returnUrl: string;
+  profileDropdown: boolean;
+  drawer: {
+    open: boolean;
+    body: ReactNode | null;
+  };
+  login: object;
+  signup: object;
+  openTab: number;
+  review: object;
+  editUser: object;
+  editFarm: object;
+  editProduct: object;
+}
 
 const initialState = {
   activePage: "",
@@ -6,7 +24,7 @@ const initialState = {
   profileDropdown: false,
   drawer: {
     open: false,
-    body: null
+    body: null,
   },
   login: {},
   signup: {},
@@ -15,7 +33,7 @@ const initialState = {
   editUser: {},
   editFarm: {},
   editProduct: {},
-};
+} as UiState;
 
 export const uiSlice = createSlice({
   name: "ui",
@@ -42,6 +60,9 @@ export const uiSlice = createSlice({
     setReviewForm: (state, action: PayloadAction<object>) => {
       state.review = action.payload;
     },
+    setDrawerBody: (state, action: PayloadAction<ReactNode>) => {
+      state.drawer.body = action.payload;
+    },
   },
 });
 
@@ -53,6 +74,7 @@ export const {
   setLoginForm,
   setSignupForm,
   setReviewForm,
+  setDrawerBody,
 } = uiSlice.actions;
 
 export default uiSlice.reducer;
