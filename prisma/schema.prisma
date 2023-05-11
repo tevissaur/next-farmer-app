@@ -23,6 +23,8 @@ model User {
   articles        Article[]
   farms           Farm[]
   farmMemberships FarmMember[]
+  cart            Cart[]
+  Order           Order[]
 }
 
 model Category {
@@ -47,6 +49,7 @@ model Filter {
   id        String   @id @default(cuid())
   label     String   @unique
   value     String
+  type      String
   createdAt DateTime @default(now())
 }
 
@@ -54,8 +57,8 @@ model FarmMember {
   id        String   @id @default(cuid())
   farmId    String
   userId    String
-  Farm      Farm?    @relation(fields: [farmId], references: [id])
-  Member    User?    @relation(fields: [userId], references: [id])
+  farm      Farm?    @relation(fields: [farmId], references: [id])
+  member    User?    @relation(fields: [userId], references: [id])
   createdAt DateTime @default(now())
 
   @@index([farmId])
@@ -79,7 +82,8 @@ model Farm {
   products       Product[]
   owner          User?          @relation(fields: [ownerId], references: [id])
   members        FarmMember[]
-  FarmCategory   FarmCategory[]
+  farmCategory   FarmCategory[]
+  Order          Order[]
 
   @@index([ownerId])
   @@index([seasonId])
@@ -107,7 +111,11 @@ model Cart {
   id        String        @id @default(cuid())
   total     Float
   products  CartProduct[]
+  userId    String
+  owner     User?         @relation(fields: [userId], references: [id])
   createdAt DateTime      @default(now())
+
+  @@index([userId])
 }
 
 model CartProduct {
@@ -133,24 +141,35 @@ model Product {
   categoryId    String
   rating        Float
   createdAt     DateTime @default(now())
-  Farm          Farm?    @relation(fields: [farmId], references: [id])
+  farm          Farm?    @relation(fields: [farmId], references: [id])
 
   @@index([farmId])
 }
 
 model Order {
-  id        String   @id @default(cuid())
+  id        String         @id @default(cuid())
   farmId    String
   userId    String
-  createdAt DateTime @default(now())
+  farm      Farm?          @relation(fields: [farmId], references: [id])
+  user      User?          @relation(fields: [userId], references: [id])
+  products  OrderProduct[]
+  createdAt DateTime       @default(now())
+
+  @@index([farmId])
+  @@index([userId])
 }
 
 model OrderProduct {
-  id        String   @id @default(cuid())
-  productId String
-  farmId    String
-  quantity  Int
-  createdAt DateTime @default(now())
+  id         String   @id @default(cuid())
+  productId  String
+  farmId     String
+  quantity   Int
+  totalPrice Float
+  createdAt  DateTime @default(now())
+  order      Order?   @relation(fields: [orderId], references: [id])
+  orderId    String?
+
+  @@index([orderId])
 }
 
 model Article {

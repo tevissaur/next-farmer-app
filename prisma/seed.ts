@@ -4,6 +4,7 @@ import { prisma } from "../src/server/db";
 async function main() {
   await prisma.article.deleteMany();
   await prisma.farmMember.deleteMany();
+  await prisma.product.deleteMany();
   // Seed the database based on the schema in schema.prisma with descriptive data
   await prisma.category.deleteMany();
   await prisma.category.createMany({
@@ -86,14 +87,22 @@ async function main() {
       {
         label: "Organic",
         value: slugify("Organic", { lower: true }),
+        type: "checkbox",
       },
       {
         label: "Non-GMO",
         value: slugify("Non-GMO", { lower: true }),
+        type: "checkbox",
       },
       {
         label: "Gluten-Free",
         value: slugify("Gluten-Free", { lower: true }),
+        type: "checkbox",
+      },
+      {
+        label: "Farms",
+        value: slugify("Farms", { lower: true }),
+        type: "checkbox",
       },
     ],
   });

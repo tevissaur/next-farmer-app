@@ -6,6 +6,8 @@ import {
   NewspaperIcon,
   PhoneIcon,
 } from "@heroicons/react/20/solid";
+import Link from "next/link";
+import slugify from "slugify";
 
 const ContactForm: FC<PropsWithChildren> = ({ children }) => {
   const cards = [
@@ -61,9 +63,10 @@ const ContactForm: FC<PropsWithChildren> = ({ children }) => {
         </div>
         <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-8">
           {cards.map((card) => (
-            <div
+            <Link
+              href={`contact/${slugify(card.name, { lower: true })}`}
               key={card.name}
-              className="flex gap-x-4 rounded-xl bg-white/5 p-6 ring-1 ring-inset ring-white/10"
+              className="flex gap-x-4 rounded-xl bg-white/5 p-6 ring-1 ring-inset ring-white/10 hover:bg-white/20"
             >
               <card.icon
                 className="h-7 w-5 flex-none text-indigo-400"
@@ -73,7 +76,7 @@ const ContactForm: FC<PropsWithChildren> = ({ children }) => {
                 <h3 className="font-semibold text-white">{card.name}</h3>
                 <p className="mt-2 text-gray-300">{card.description}</p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
@@ -82,10 +85,75 @@ const ContactForm: FC<PropsWithChildren> = ({ children }) => {
 };
 
 const Contact: NextPage = () => {
+  const faqs = [
+    {
+      id: 1,
+      question: "How do you make holy water?",
+      answer:
+        "You boil the hell out of it. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+    },
+    {
+      id: 2,
+      question: "How do you make holy water?",
+      answer:
+        "You boil the hell out of it. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+    },
+    {
+      id: 3,
+      question: "How do you make holy water?",
+      answer:
+        "You boil the hell out of it. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+    },
+    {
+      id: 4,
+      question: "How do you make holy water?",
+      answer:
+        "You boil the hell out of it. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+    },
+    {
+      id: 5,
+      question: "How do you make holy water?",
+      answer:
+        "You boil the hell out of it. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+    },
+    // More questions...
+  ];
   return (
     <>
       <Banner>Contact Us</Banner>
       <ContactForm />
+      <div className="bg-white">
+        <div className="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
+          <h2 className="text-2xl font-bold leading-10 tracking-tight text-gray-900">
+            Frequently asked questions
+          </h2>
+          <p className="mt-6 max-w-2xl text-base leading-7 text-gray-600">
+            Have a different question and can’t find the answer you’re looking
+            for? Reach out to our support team by{" "}
+            <a
+              href="#"
+              className="font-semibold text-indigo-600 hover:text-indigo-500"
+            >
+              sending us an email
+            </a>{" "}
+            and we’ll get back to you as soon as we can.
+          </p>
+          <div className="mt-20">
+            <dl className="space-y-16 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-16 sm:space-y-0 lg:grid-cols-3 lg:gap-x-10">
+              {faqs.map((faq) => (
+                <div key={faq.id}>
+                  <dt className="text-base font-semibold leading-7 text-gray-900">
+                    {faq.question}
+                  </dt>
+                  <dd className="mt-2 text-base leading-7 text-gray-600">
+                    {faq.answer}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </div>
+      </div>
     </>
   );
 };

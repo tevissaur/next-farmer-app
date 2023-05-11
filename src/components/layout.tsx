@@ -23,7 +23,11 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main className="flex min-h-screen flex-col items-center justify-start gap-5">
+      <main className="relative flex min-h-screen flex-col items-center justify-start gap-5 ">
+        {/* <div
+          className="absolute inset-y-0 right-1/2 -z-10 -mr-96 w-[200%] origin-top-right skew-x-[-30deg] bg-white shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:-mr-80 lg:-mr-96"
+          aria-hidden="true"
+        /> */}
         {children}
       </main>
       <Footer />

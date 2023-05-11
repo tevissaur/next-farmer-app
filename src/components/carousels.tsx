@@ -57,7 +57,7 @@ export const PopularCategories: FC<PopularCategoriesProps> = ({ posts }) => {
   } = api.categories.getAllCategories.useQuery();
   return (
     <>
-      <div className="md:max-w-1/2 flex h-full w-full flex-col gap-5 rounded-lg p-3 md:w-2/3">
+      <div className="lg:max-w-1/2 flex h-full w-full flex-col gap-5 rounded-lg p-3 lg:w-2/3">
         <h3 className="content-start text-start text-[2rem]">
           Popular Categories
         </h3>
@@ -97,7 +97,7 @@ export const TopFarms: FC = () => {
   } = api.farms.getLocalFarms.useQuery({ latitude, longitude });
   return (
     <>
-      <div className="md:max-w-1/2 flex h-full w-full flex-col gap-4 rounded-lg p-3 md:w-2/3">
+      <div className="lg:max-w-1/2 flex h-full w-full flex-col gap-4 rounded-lg p-3 lg:w-2/3">
         <h3 className="content-start text-start text-[2rem]">
           Farms Near You!
         </h3>
@@ -130,7 +130,7 @@ export const PopularBlogs: FC = () => {
     isLoading,
   } = api.articles.getTopBlogPosts.useQuery();
   return (
-    <div className="bg-white py-24 sm:py-32">
+    <div className=" py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">

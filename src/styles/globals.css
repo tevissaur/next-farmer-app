@@ -27,7 +27,7 @@
     @apply min-w-max translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-full border-1 border-black font-bold text-black shadow-outline-profile transition-all duration-100 hover:translate-x-0 hover:bg-white/60 hover:shadow-none;
   }
   .input-primary {
-    @apply translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-xl border-1 border-black bg-french-gray px-4 py-2 text-black placeholder-black/50 shadow-outline transition-all duration-100 hover:bg-cool-gray focus:translate-x-0 focus:translate-y-0 focus:bg-french-gray focus:shadow-none;
+    @apply w-full translate-x-reverse-0.5 translate-y-reverse-0.5 rounded-full border-1 border-black bg-french-gray px-4 py-2 text-black placeholder-black/50 shadow-outline transition-all duration-100 hover:bg-white focus:translate-x-0 focus:translate-y-0 focus:bg-white focus:shadow-none;
   }
   ::-webkit-scrollbar {
     @apply hidden max-h-[0.6rem] max-w-[0.6rem] rounded-xl bg-french-gray;

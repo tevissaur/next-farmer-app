@@ -28,7 +28,7 @@ export const CreateFarmWizard: FC<PropsWithChildren> = ({ children }) => {
       },
       {
         name: "Bucky's Farm",
-        slug: slugify("Lucky's Farm", { lower: true }),
+        slug: slugify("Bucky's Farm", { lower: true }),
         image: "https://source.unsplash.com/featured/?farm",
         latitude: 43.6532,
         longitude: -79.3832,
@@ -41,7 +41,7 @@ export const CreateFarmWizard: FC<PropsWithChildren> = ({ children }) => {
       },
       {
         name: "Ducky's Farm",
-        slug: slugify("Lucky's Farm", { lower: true }),
+        slug: slugify("Ducky's Farm", { lower: true }),
         image: "https://source.unsplash.com/featured/?farm",
         latitude: 43.6532,
         longitude: -79.3832,
@@ -54,7 +54,7 @@ export const CreateFarmWizard: FC<PropsWithChildren> = ({ children }) => {
       },
       {
         name: "Rucky's Farm",
-        slug: slugify("Lucky's Farm", { lower: true }),
+        slug: slugify("Rucky's Farm", { lower: true }),
         image: "https://source.unsplash.com/featured/?farm",
         latitude: 43.6532,
         longitude: -79.3832,
@@ -67,7 +67,7 @@ export const CreateFarmWizard: FC<PropsWithChildren> = ({ children }) => {
       },
       {
         name: "Jucky's Farm",
-        slug: slugify("Lucky's Farm", { lower: true }),
+        slug: slugify("Jucky's Farm", { lower: true }),
         image: "https://source.unsplash.com/featured/?farm",
         latitude: 43.6532,
         longitude: -79.3832,
@@ -80,7 +80,7 @@ export const CreateFarmWizard: FC<PropsWithChildren> = ({ children }) => {
       },
       {
         name: "Pucky's Farm",
-        slug: slugify("Lucky's Farm", { lower: true }),
+        slug: slugify("Pucky's Farm", { lower: true }),
         image: "https://source.unsplash.com/featured/?farm",
         latitude: 43.6532,
         longitude: -79.3832,
@@ -93,7 +93,7 @@ export const CreateFarmWizard: FC<PropsWithChildren> = ({ children }) => {
       },
       {
         name: "Yucky's Farm",
-        slug: slugify("Lucky's Farm", { lower: true }),
+        slug: slugify("Yucky's Farm", { lower: true }),
         image: "https://source.unsplash.com/featured/?farm",
         latitude: 43.6532,
         longitude: -79.3832,

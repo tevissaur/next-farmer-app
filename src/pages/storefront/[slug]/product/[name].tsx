@@ -35,8 +35,8 @@ const Storefront: NextPage = () => {
     isLoading,
     isError,
     isSuccess,
-  } = api.farms.getFarmBySlug.useQuery(slug as string);
-  const { user } = useUser();
+  } = api.farms.getFarmBySlug.useQuery((slug as string) || "");
+  const { user, isSignedIn } = useUser();
 
   const isUserMember = farm?.members?.some(
     (membership) => membership.userId === user?.id
@@ -97,8 +97,6 @@ const Storefront: NextPage = () => {
 
   return (
     <div className="w-full bg-white">
-      <CreateMemberWizard farmId={farm?.id || ""} />
-
       <div>
         {/* Mobile filter dialog */}
         <Transition.Root show={mobileFiltersOpen} as={Fragment}>
@@ -234,6 +232,14 @@ const Storefront: NextPage = () => {
                 <span className="inline-flex items-center rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-700">
                   Member
                 </span>
+              )}
+              {isSignedIn && !isLoading && !isUserMember && (
+                <Link
+                  className="btn-primary"
+                  href={`/subscribe/${farm?.slug || ""}`}
+                >
+                  Subscribe
+                </Link>
               )}
             </div>
 

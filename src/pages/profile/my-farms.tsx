@@ -10,7 +10,7 @@ import Link from "next/link";
 const Profile: NextPage = () => {
   return (
     <div className="flex w-full flex-col items-center justify-center">
-      <Banner>My Farm</Banner>
+      <Banner>My Farms</Banner>
       <ProfileFarmWidget />
     </div>
   );

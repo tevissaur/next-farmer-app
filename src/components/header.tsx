@@ -103,7 +103,7 @@ export const Header: FC<PropsWithChildren> = () => {
           </div>
         </Dialog>
       </Transition.Root>
-      <header className="flex items-center justify-around gap-x-10 border-b-1 border-black bg-olivine py-5 shadow-lg md:justify-center">
+      <header className="z-50 flex items-center justify-around gap-x-10 border-b-1 border-black bg-olivine py-5 shadow-lg md:justify-center">
         <h1 className="text-2xl font-semibold text-gray-900">
           <Link href="/">Your Local Farmers</Link>
         </h1>

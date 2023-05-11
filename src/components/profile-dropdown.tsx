@@ -99,7 +99,7 @@ export default function ProfileDropdown() {
                         aria-hidden="true"
                       />
                     )}
-                    My Farm
+                    My Farms
                   </Link>
                 )}
               </Menu.Item>
